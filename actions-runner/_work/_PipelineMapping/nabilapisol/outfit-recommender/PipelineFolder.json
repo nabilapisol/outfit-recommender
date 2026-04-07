@@ -1,0 +1,12 @@
+﻿{
+  "repositoryName": "nabilapisol/outfit-recommender",
+  "pipelineDirectory": "outfit-recommender",
+  "workspaceDirectory": "outfit-recommender\\outfit-recommender",
+  "repositories": {
+    "nabilapisol/outfit-recommender": {
+      "repositoryPath": "outfit-recommender\\outfit-recommender",
+      "lastRunOn": "04/08/2026 02:49:21 +09:00"
+    }
+  },
+  "lastRunOn": "04/08/2026 02:49:21 +09:00"
+}

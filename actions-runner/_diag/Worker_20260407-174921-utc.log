@@ -1,0 +1,2548 @@
+[2026-04-07 17:49:21Z INFO HostContext] No proxy settings were found based on environmental variables (http_proxy/https_proxy/HTTP_PROXY/HTTPS_PROXY)
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:49:21Z INFO HostContext] Well known config file 'Credentials': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\.credentials'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:49:21Z INFO HostContext] Well known config file 'Runner': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\.runner'
+[2026-04-07 17:49:21Z INFO Worker] Version: 2.333.1
+[2026-04-07 17:49:21Z INFO Worker] Commit: 6792966801e8925346735b68c03bf9f347af4646
+[2026-04-07 17:49:21Z INFO Worker] Culture: en-MY
+[2026-04-07 17:49:21Z INFO Worker] UI Culture: en-US
+[2026-04-07 17:49:21Z INFO Worker] Waiting to receive the job message from the channel.
+[2026-04-07 17:49:21Z INFO ProcessChannel] Receiving message of length 35211, with hash 'c2861fcd3e92084831f0beabd97c292e1e51904bf223f482aed2b7eabba1c2a4'
+[2026-04-07 17:49:21Z INFO Worker] Message received.
+[2026-04-07 17:49:21Z INFO Worker] Job message:
+ {
+  "fileTable": [
+    ".github/workflows/deploy.yml"
+  ],
+  "mask": [
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    }
+  ],
+  "steps": [
+    {
+      "type": "action",
+      "reference": {
+        "type": "script"
+      },
+      "displayNameToken": {
+        "type": 0,
+        "file": 1,
+        "line": 14,
+        "col": 15,
+        "lit": "Pull latest Docker image"
+      },
+      "contextName": "__run",
+      "inputs": {
+        "type": 2,
+        "map": [
+          {
+            "key": "script",
+            "value": {
+              "type": 0,
+              "file": 1,
+              "line": 15,
+              "col": 14,
+              "lit": "docker pull nabilapisol/outfit-recommender:latest"
+            }
+          }
+        ]
+      },
+      "condition": "success()",
+      "id": "56ba0d82-5c97-413f-a32a-7e9650131ba8",
+      "name": "__run"
+    },
+    {
+      "type": "action",
+      "reference": {
+        "type": "script"
+      },
+      "displayNameToken": {
+        "type": 0,
+        "file": 1,
+        "line": 17,
+        "col": 15,
+        "lit": "Stop old container"
+      },
+      "contextName": "__run_2",
+      "inputs": {
+        "type": 2,
+        "map": [
+          {
+            "key": "script",
+            "value": {
+              "type": 0,
+              "file": 1,
+              "line": 18,
+              "col": 14,
+              "lit": "docker stop outfit-container || true"
+            }
+          }
+        ]
+      },
+      "condition": "success()",
+      "id": "460bc7f3-f43c-4c24-8ea8-76f891d515aa",
+      "name": "__run_2"
+    },
+    {
+      "type": "action",
+      "reference": {
+        "type": "script"
+      },
+      "displayNameToken": {
+        "type": 0,
+        "file": 1,
+        "line": 20,
+        "col": 15,
+        "lit": "Remove old container"
+      },
+      "contextName": "__run_3",
+      "inputs": {
+        "type": 2,
+        "map": [
+          {
+            "key": "script",
+            "value": {
+              "type": 0,
+              "file": 1,
+              "line": 21,
+              "col": 14,
+              "lit": "docker rm outfit-container || true"
+            }
+          }
+        ]
+      },
+      "condition": "success()",
+      "id": "f292e671-6fb0-4172-bd5d-5397f1ed7963",
+      "name": "__run_3"
+    },
+    {
+      "type": "action",
+      "reference": {
+        "type": "script"
+      },
+      "displayNameToken": {
+        "type": 0,
+        "file": 1,
+        "line": 23,
+        "col": 15,
+        "lit": "Run new container"
+      },
+      "contextName": "__run_4",
+      "inputs": {
+        "type": 2,
+        "map": [
+          {
+            "key": "script",
+            "value": {
+              "type": 0,
+              "file": 1,
+              "line": 24,
+              "col": 14,
+              "lit": "docker run -d -p 8000:8080 --name outfit-container nabilapisol/outfit-recommender:latest"
+            }
+          }
+        ]
+      },
+      "condition": "success()",
+      "id": "81956456-6f94-4935-9f3e-f168f87c979c",
+      "name": "__run_4"
+    }
+  ],
+  "variables": {
+    "Actions.EnableHttpRedirects": {
+      "value": "true"
+    },
+    "DistributedTask.AddWarningToNode12Action": {
+      "value": "true"
+    },
+    "DistributedTask.AddWarningToNode16Action": {
+      "value": "true"
+    },
+    "DistributedTask.AllowRunnerContainerHooks": {
+      "value": "true"
+    },
+    "DistributedTask.DeprecateStepOutputCommands": {
+      "value": "true"
+    },
+    "DistributedTask.DetailUntarFailure": {
+      "value": "true"
+    },
+    "DistributedTask.EnableCompositeActions": {
+      "value": "true"
+    },
+    "DistributedTask.EnableJobServerQueueTelemetry": {
+      "value": "true"
+    },
+    "DistributedTask.EnhancedAnnotations": {
+      "value": "true"
+    },
+    "DistributedTask.ForceGithubJavascriptActionsToNode16": {
+      "value": "true"
+    },
+    "DistributedTask.ForceGithubJavascriptActionsToNode20": {
+      "value": "true"
+    },
+    "DistributedTask.LogTemplateErrorsAsDebugMessages": {
+      "value": "true"
+    },
+    "DistributedTask.MarkJobAsFailedOnWorkerCrash": {
+      "value": "true"
+    },
+    "DistributedTask.NewActionMetadata": {
+      "value": "true"
+    },
+    "DistributedTask.UploadStepSummary": {
+      "value": "true"
+    },
+    "DistributedTask.UseActionArchiveCache": {
+      "value": "true"
+    },
+    "DistributedTask.UseWhich2": {
+      "value": "true"
+    },
+    "RunService.FixEmbeddedIssues": {
+      "value": "true"
+    },
+    "actions.runner.requirenode24": {
+      "value": "false"
+    },
+    "actions.runner.usenode24bydefault": {
+      "value": "false"
+    },
+    "actions.runner.warnonnode20": {
+      "value": "true"
+    },
+    "actions_add_check_run_id_to_job_context": {
+      "value": "true"
+    },
+    "actions_batch_action_resolution": {
+      "value": "false"
+    },
+    "actions_container_action_runner_temp": {
+      "value": "true"
+    },
+    "actions_display_helpful_actions_download_errors": {
+      "value": "true"
+    },
+    "actions_runner_compare_workflow_parser": {
+      "value": "false"
+    },
+    "actions_runner_deprecate_linux_arm32": {
+      "value": "false"
+    },
+    "actions_runner_emit_composite_markers": {
+      "value": "false"
+    },
+    "actions_runner_kill_linux_arm32": {
+      "value": "false"
+    },
+    "actions_runner_node20_removal_date": {
+      "value": ""
+    },
+    "actions_runner_node24_default_date": {
+      "value": ""
+    },
+    "actions_service_container_command": {
+      "value": "true"
+    },
+    "actions_set_orchestration_id_env_for_actions": {
+      "value": "true"
+    },
+    "actions_skip_retry_complete_job_upon_known_errors": {
+      "value": "true"
+    },
+    "actions_snapshot_preflight_hosted_runner_check": {
+      "value": "false"
+    },
+    "actions_snapshot_preflight_image_gen_pool_check": {
+      "value": "false"
+    },
+    "actions_use_bearer_token_for_codeload": {
+      "value": "false"
+    },
+    "actions_uses_cache_service_v2": {
+      "value": "true"
+    },
+    "github_token": {
+      "value": "***",
+      "isSecret": true
+    },
+    "system.from_run_service": {
+      "value": "true"
+    },
+    "system.github.job": {
+      "value": "deploy"
+    },
+    "system.github.launch_endpoint": {
+      "value": "https://launch.actions.githubusercontent.com"
+    },
+    "system.github.results_endpoint": {
+      "value": "https://results-receiver.actions.githubusercontent.com/"
+    },
+    "system.github.results_upload_with_sdk": {
+      "value": "true"
+    },
+    "system.github.token": {
+      "value": "***",
+      "isSecret": true
+    },
+    "system.github.token.permissions": {
+      "value": "{\"Contents\":\"read\",\"Metadata\":\"read\",\"Packages\":\"read\"}"
+    },
+    "system.orchestrationId": {
+      "value": "5561a0c9-7f44-48b2-b6b3-e3e9dca6c975.deploy.__default"
+    },
+    "system.phaseDisplayName": {
+      "value": "deploy"
+    },
+    "system.runner.lowdiskspacethreshold": {
+      "value": "100"
+    },
+    "system.runnerEnvironment": {
+      "value": "self-hosted"
+    },
+    "system.runnerGroupName": {
+      "value": "Default"
+    }
+  },
+  "messageType": "RunnerJobRequest",
+  "plan": {
+    "scopeIdentifier": "00000000-0000-0000-0000-000000000000",
+    "planType": "actions",
+    "version": 0,
+    "planId": "5561a0c9-7f44-48b2-b6b3-e3e9dca6c975",
+    "planGroup": null,
+    "artifactUri": null,
+    "artifactLocation": null,
+    "definition": null,
+    "owner": null
+  },
+  "timeline": {
+    "id": "5561a0c9-7f44-48b2-b6b3-e3e9dca6c975",
+    "changeId": 0,
+    "location": null
+  },
+  "jobId": "c0a769e5-7843-50e6-bece-b3248feae233",
+  "jobDisplayName": "deploy",
+  "jobName": "__default",
+  "requestId": 0,
+  "lockedUntil": "0001-01-01T00:00:00",
+  "resources": {
+    "endpoints": [
+      {
+        "data": {
+          "ServerId": "",
+          "ServerName": "",
+          "CacheServerUrl": "https://artifactcache.actions.githubusercontent.com/enMLoEwisWm0p8KyKw1P9sjgwmVmNfb4dZtfoseGgl6ZPRRhJL/",
+          "FeedStreamUrl": "wss://results-receiver.actions.githubusercontent.com/_ws/ingest.sock",
+          "ResultsServiceUrl": "https://results-receiver.actions.githubusercontent.com/",
+          "PipelinesServiceUrl": "https://pipelinesghubeus5.actions.githubusercontent.com/enMLoEwisWm0p8KyKw1P9sjgwmVmNfb4dZtfoseGgl6ZPRRhJL/",
+          "GenerateIdTokenUrl": "",
+          "ConnectivityChecks": "[\"https://broker.actions.githubusercontent.com/health\",\"https://token.actions.githubusercontent.com/ready\",\"https://run.actions.githubusercontent.com/health\"]"
+        },
+        "name": "SystemVssConnection",
+        "url": "https://run-actions-2-azure-eastus.actions.githubusercontent.com/8/",
+        "authorization": {
+          "parameters": {
+            "AccessToken": "***"
+          },
+          "scheme": "OAuth"
+        },
+        "isShared": false,
+        "isReady": true
+      }
+    ]
+  },
+  "contextData": {
+    "github": {
+      "t": 2,
+      "d": [
+        {
+          "k": "ref",
+          "v": "refs/heads/main"
+        },
+        {
+          "k": "sha",
+          "v": "96395715c7434652005e96ada32ed61cb4604c22"
+        },
+        {
+          "k": "repository",
+          "v": "nabilapisol/outfit-recommender"
+        },
+        {
+          "k": "repository_owner",
+          "v": "nabilapisol"
+        },
+        {
+          "k": "repository_owner_id",
+          "v": "248300705"
+        },
+        {
+          "k": "repositoryUrl",
+          "v": "git://github.com/nabilapisol/outfit-recommender.git"
+        },
+        {
+          "k": "run_id",
+          "v": "24096019579"
+        },
+        {
+          "k": "run_number",
+          "v": "1"
+        },
+        {
+          "k": "retention_days",
+          "v": "90"
+        },
+        {
+          "k": "run_attempt",
+          "v": "1"
+        },
+        {
+          "k": "artifact_cache_size_limit",
+          "v": "10"
+        },
+        {
+          "k": "repository_visibility",
+          "v": "public"
+        },
+        {
+          "k": "actor_id",
+          "v": "248300705"
+        },
+        {
+          "k": "actor",
+          "v": "nabilapisol"
+        },
+        {
+          "k": "workflow",
+          "v": "Deploy"
+        },
+        {
+          "k": "head_ref",
+          "v": ""
+        },
+        {
+          "k": "base_ref",
+          "v": ""
+        },
+        {
+          "k": "event_name",
+          "v": "workflow_run"
+        },
+        {
+          "k": "server_url",
+          "v": "https://github.com"
+        },
+        {
+          "k": "api_url",
+          "v": "https://api.github.com"
+        },
+        {
+          "k": "graphql_url",
+          "v": "https://api.github.com/graphql"
+        },
+        {
+          "k": "ref_name",
+          "v": "main"
+        },
+        {
+          "k": "ref_protected",
+          "v": false
+        },
+        {
+          "k": "ref_type",
+          "v": "branch"
+        },
+        {
+          "k": "secret_source",
+          "v": "Actions"
+        },
+        {
+          "k": "event",
+          "v": {
+            "t": 2,
+            "d": [
+              {
+                "k": "action",
+                "v": "completed"
+              },
+              {
+                "k": "repository",
+                "v": {
+                  "t": 2,
+                  "d": [
+                    {
+                      "k": "allow_forking",
+                      "v": true
+                    },
+                    {
+                      "k": "archive_url",
+                      "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/{archive_format}{/ref}"
+                    },
+                    {
+                      "k": "archived",
+                      "v": false
+                    },
+                    {
+                      "k": "assignees_url",
+                      "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/assignees{/user}"
+                    },
+                    {
+                      "k": "blobs_url",
+                      "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/git/blobs{/sha}"
+                    },
+                    {
+                      "k": "branches_url",
+                      "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/branches{/branch}"
+                    },
+                    {
+                      "k": "clone_url",
+                      "v": "https://github.com/nabilapisol/outfit-recommender.git"
+                    },
+                    {
+                      "k": "collaborators_url",
+                      "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/collaborators{/collaborator}"
+                    },
+                    {
+                      "k": "comments_url",
+                      "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/comments{/number}"
+                    },
+                    {
+                      "k": "commits_url",
+                      "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/commits{/sha}"
+                    },
+                    {
+                      "k": "compare_url",
+                      "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/compare/{base}...{head}"
+                    },
+                    {
+                      "k": "contents_url",
+                      "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/contents/{+path}"
+                    },
+                    {
+                      "k": "contributors_url",
+                      "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/contributors"
+                    },
+                    {
+                      "k": "created_at",
+                      "v": "2026-04-07T16:14:46Z"
+                    },
+                    {
+                      "k": "default_branch",
+                      "v": "main"
+                    },
+                    {
+                      "k": "deployments_url",
+                      "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/deployments"
+                    },
+                    {
+                      "k": "description",
+                      "v": null
+                    },
+                    {
+                      "k": "disabled",
+                      "v": false
+                    },
+                    {
+                      "k": "downloads_url",
+                      "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/downloads"
+                    },
+                    {
+                      "k": "events_url",
+                      "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/events"
+                    },
+                    {
+                      "k": "fork",
+                      "v": false
+                    },
+                    {
+                      "k": "forks",
+                      "v": 0.0
+                    },
+                    {
+                      "k": "forks_count",
+                      "v": 0.0
+                    },
+                    {
+                      "k": "forks_url",
+                      "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/forks"
+                    },
+                    {
+                      "k": "full_name",
+                      "v": "nabilapisol/outfit-recommender"
+                    },
+                    {
+                      "k": "git_commits_url",
+                      "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/git/commits{/sha}"
+                    },
+                    {
+                      "k": "git_refs_url",
+                      "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/git/refs{/sha}"
+                    },
+                    {
+                      "k": "git_tags_url",
+                      "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/git/tags{/sha}"
+                    },
+                    {
+                      "k": "git_url",
+                      "v": "git://github.com/nabilapisol/outfit-recommender.git"
+                    },
+                    {
+                      "k": "has_discussions",
+                      "v": false
+                    },
+                    {
+                      "k": "has_downloads",
+                      "v": true
+                    },
+                    {
+                      "k": "has_issues",
+                      "v": true
+                    },
+                    {
+                      "k": "has_pages",
+                      "v": false
+                    },
+                    {
+                      "k": "has_projects",
+                      "v": true
+                    },
+                    {
+                      "k": "has_pull_requests",
+                      "v": true
+                    },
+                    {
+                      "k": "has_wiki",
+                      "v": true
+                    },
+                    {
+                      "k": "homepage",
+                      "v": null
+                    },
+                    {
+                      "k": "hooks_url",
+                      "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/hooks"
+                    },
+                    {
+                      "k": "html_url",
+                      "v": "https://github.com/nabilapisol/outfit-recommender"
+                    },
+                    {
+                      "k": "id",
+                      "v": 1204031295.0
+                    },
+                    {
+                      "k": "is_template",
+                      "v": false
+                    },
+                    {
+                      "k": "issue_comment_url",
+                      "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/issues/comments{/number}"
+                    },
+                    {
+                      "k": "issue_events_url",
+                      "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/issues/events{/number}"
+                    },
+                    {
+                      "k": "issues_url",
+                      "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/issues{/number}"
+                    },
+                    {
+                      "k": "keys_url",
+                      "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/keys{/key_id}"
+                    },
+                    {
+                      "k": "labels_url",
+                      "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/labels{/name}"
+                    },
+                    {
+                      "k": "language",
+                      "v": "Python"
+                    },
+                    {
+                      "k": "languages_url",
+                      "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/languages"
+                    },
+                    {
+                      "k": "license",
+                      "v": null
+                    },
+                    {
+                      "k": "merges_url",
+                      "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/merges"
+                    },
+                    {
+                      "k": "milestones_url",
+                      "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/milestones{/number}"
+                    },
+                    {
+                      "k": "mirror_url",
+                      "v": null
+                    },
+                    {
+                      "k": "name",
+                      "v": "outfit-recommender"
+                    },
+                    {
+                      "k": "node_id",
+                      "v": "R_kgDOR8QPPw"
+                    },
+                    {
+                      "k": "notifications_url",
+                      "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/notifications{?since,all,participating}"
+                    },
+                    {
+                      "k": "open_issues",
+                      "v": 0.0
+                    },
+                    {
+                      "k": "open_issues_count",
+                      "v": 0.0
+                    },
+                    {
+                      "k": "owner",
+                      "v": {
+                        "t": 2,
+                        "d": [
+                          {
+                            "k": "avatar_url",
+                            "v": "https://avatars.githubusercontent.com/u/248300705?v=4"
+                          },
+                          {
+                            "k": "events_url",
+                            "v": "https://api.github.com/users/nabilapisol/events{/privacy}"
+                          },
+                          {
+                            "k": "followers_url",
+                            "v": "https://api.github.com/users/nabilapisol/followers"
+                          },
+                          {
+                            "k": "following_url",
+                            "v": "https://api.github.com/users/nabilapisol/following{/other_user}"
+                          },
+                          {
+                            "k": "gists_url",
+                            "v": "https://api.github.com/users/nabilapisol/gists{/gist_id}"
+                          },
+                          {
+                            "k": "gravatar_id",
+                            "v": ""
+                          },
+                          {
+                            "k": "html_url",
+                            "v": "https://github.com/nabilapisol"
+                          },
+                          {
+                            "k": "id",
+                            "v": 248300705.0
+                          },
+                          {
+                            "k": "login",
+                            "v": "nabilapisol"
+                          },
+                          {
+                            "k": "node_id",
+                            "v": "U_kgDODszEoQ"
+                          },
+                          {
+                            "k": "organizations_url",
+                            "v": "https://api.github.com/users/nabilapisol/orgs"
+                          },
+                          {
+                            "k": "received_events_url",
+                            "v": "https://api.github.com/users/nabilapisol/received_events"
+                          },
+                          {
+                            "k": "repos_url",
+                            "v": "https://api.github.com/users/nabilapisol/repos"
+                          },
+                          {
+                            "k": "site_admin",
+                            "v": false
+                          },
+                          {
+                            "k": "starred_url",
+                            "v": "https://api.github.com/users/nabilapisol/starred{/owner}{/repo}"
+                          },
+                          {
+                            "k": "subscriptions_url",
+                            "v": "https://api.github.com/users/nabilapisol/subscriptions"
+                          },
+                          {
+                            "k": "type",
+                            "v": "User"
+                          },
+                          {
+                            "k": "url",
+                            "v": "https://api.github.com/users/nabilapisol"
+                          },
+                          {
+                            "k": "user_view_type",
+                            "v": "public"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "k": "private",
+                      "v": false
+                    },
+                    {
+                      "k": "pull_request_creation_policy",
+                      "v": "all"
+                    },
+                    {
+                      "k": "pulls_url",
+                      "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/pulls{/number}"
+                    },
+                    {
+                      "k": "pushed_at",
+                      "v": "2026-04-07T17:47:58Z"
+                    },
+                    {
+                      "k": "releases_url",
+                      "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/releases{/id}"
+                    },
+                    {
+                      "k": "size",
+                      "v": 5157.0
+                    },
+                    {
+                      "k": "ssh_url",
+                      "v": "git@github.com:nabilapisol/outfit-recommender.git"
+                    },
+                    {
+                      "k": "stargazers_count",
+                      "v": 0.0
+                    },
+                    {
+                      "k": "stargazers_url",
+                      "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/stargazers"
+                    },
+                    {
+                      "k": "statuses_url",
+                      "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/statuses/{sha}"
+                    },
+                    {
+                      "k": "subscribers_url",
+                      "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/subscribers"
+                    },
+                    {
+                      "k": "subscription_url",
+                      "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/subscription"
+                    },
+                    {
+                      "k": "svn_url",
+                      "v": "https://github.com/nabilapisol/outfit-recommender"
+                    },
+                    {
+                      "k": "tags_url",
+                      "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/tags"
+                    },
+                    {
+                      "k": "teams_url",
+                      "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/teams"
+                    },
+                    {
+                      "k": "topics",
+                      "v": {
+                        "t": 1
+                      }
+                    },
+                    {
+                      "k": "trees_url",
+                      "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/git/trees{/sha}"
+                    },
+                    {
+                      "k": "updated_at",
+                      "v": "2026-04-07T17:48:07Z"
+                    },
+                    {
+                      "k": "url",
+                      "v": "https://api.github.com/repos/nabilapisol/outfit-recommender"
+                    },
+                    {
+                      "k": "visibility",
+                      "v": "public"
+                    },
+                    {
+                      "k": "watchers",
+                      "v": 0.0
+                    },
+                    {
+                      "k": "watchers_count",
+                      "v": 0.0
+                    },
+                    {
+                      "k": "web_commit_signoff_required",
+                      "v": false
+                    }
+                  ]
+                }
+              },
+              {
+                "k": "sender",
+                "v": {
+                  "t": 2,
+                  "d": [
+                    {
+                      "k": "avatar_url",
+                      "v": "https://avatars.githubusercontent.com/u/248300705?v=4"
+                    },
+                    {
+                      "k": "events_url",
+                      "v": "https://api.github.com/users/nabilapisol/events{/privacy}"
+                    },
+                    {
+                      "k": "followers_url",
+                      "v": "https://api.github.com/users/nabilapisol/followers"
+                    },
+                    {
+                      "k": "following_url",
+                      "v": "https://api.github.com/users/nabilapisol/following{/other_user}"
+                    },
+                    {
+                      "k": "gists_url",
+                      "v": "https://api.github.com/users/nabilapisol/gists{/gist_id}"
+                    },
+                    {
+                      "k": "gravatar_id",
+                      "v": ""
+                    },
+                    {
+                      "k": "html_url",
+                      "v": "https://github.com/nabilapisol"
+                    },
+                    {
+                      "k": "id",
+                      "v": 248300705.0
+                    },
+                    {
+                      "k": "login",
+                      "v": "nabilapisol"
+                    },
+                    {
+                      "k": "node_id",
+                      "v": "U_kgDODszEoQ"
+                    },
+                    {
+                      "k": "organizations_url",
+                      "v": "https://api.github.com/users/nabilapisol/orgs"
+                    },
+                    {
+                      "k": "received_events_url",
+                      "v": "https://api.github.com/users/nabilapisol/received_events"
+                    },
+                    {
+                      "k": "repos_url",
+                      "v": "https://api.github.com/users/nabilapisol/repos"
+                    },
+                    {
+                      "k": "site_admin",
+                      "v": false
+                    },
+                    {
+                      "k": "starred_url",
+                      "v": "https://api.github.com/users/nabilapisol/starred{/owner}{/repo}"
+                    },
+                    {
+                      "k": "subscriptions_url",
+                      "v": "https://api.github.com/users/nabilapisol/subscriptions"
+                    },
+                    {
+                      "k": "type",
+                      "v": "User"
+                    },
+                    {
+                      "k": "url",
+                      "v": "https://api.github.com/users/nabilapisol"
+                    },
+                    {
+                      "k": "user_view_type",
+                      "v": "public"
+                    }
+                  ]
+                }
+              },
+              {
+                "k": "workflow",
+                "v": {
+                  "t": 2,
+                  "d": [
+                    {
+                      "k": "badge_url",
+                      "v": "https://github.com/nabilapisol/outfit-recommender/workflows/CI/CD%20Pipeline/badge.svg"
+                    },
+                    {
+                      "k": "created_at",
+                      "v": "2026-04-07T16:18:57.000Z"
+                    },
+                    {
+                      "k": "html_url",
+                      "v": "https://github.com/nabilapisol/outfit-recommender/blob/main/.github/workflows/ci.yml"
+                    },
+                    {
+                      "k": "id",
+                      "v": 257483709.0
+                    },
+                    {
+                      "k": "name",
+                      "v": "CI/CD Pipeline"
+                    },
+                    {
+                      "k": "node_id",
+                      "v": "W_kwDOR8QPP84PWOO9"
+                    },
+                    {
+                      "k": "path",
+                      "v": ".github/workflows/ci.yml"
+                    },
+                    {
+                      "k": "state",
+                      "v": "active"
+                    },
+                    {
+                      "k": "updated_at",
+                      "v": "2026-04-07T17:10:26.000Z"
+                    },
+                    {
+                      "k": "url",
+                      "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/actions/workflows/257483709"
+                    }
+                  ]
+                }
+              },
+              {
+                "k": "workflow_run",
+                "v": {
+                  "t": 2,
+                  "d": [
+                    {
+                      "k": "actor",
+                      "v": {
+                        "t": 2,
+                        "d": [
+                          {
+                            "k": "avatar_url",
+                            "v": "https://avatars.githubusercontent.com/u/248300705?v=4"
+                          },
+                          {
+                            "k": "events_url",
+                            "v": "https://api.github.com/users/nabilapisol/events{/privacy}"
+                          },
+                          {
+                            "k": "followers_url",
+                            "v": "https://api.github.com/users/nabilapisol/followers"
+                          },
+                          {
+                            "k": "following_url",
+                            "v": "https://api.github.com/users/nabilapisol/following{/other_user}"
+                          },
+                          {
+                            "k": "gists_url",
+                            "v": "https://api.github.com/users/nabilapisol/gists{/gist_id}"
+                          },
+                          {
+                            "k": "gravatar_id",
+                            "v": ""
+                          },
+                          {
+                            "k": "html_url",
+                            "v": "https://github.com/nabilapisol"
+                          },
+                          {
+                            "k": "id",
+                            "v": 248300705.0
+                          },
+                          {
+                            "k": "login",
+                            "v": "nabilapisol"
+                          },
+                          {
+                            "k": "node_id",
+                            "v": "U_kgDODszEoQ"
+                          },
+                          {
+                            "k": "organizations_url",
+                            "v": "https://api.github.com/users/nabilapisol/orgs"
+                          },
+                          {
+                            "k": "received_events_url",
+                            "v": "https://api.github.com/users/nabilapisol/received_events"
+                          },
+                          {
+                            "k": "repos_url",
+                            "v": "https://api.github.com/users/nabilapisol/repos"
+                          },
+                          {
+                            "k": "site_admin",
+                            "v": false
+                          },
+                          {
+                            "k": "starred_url",
+                            "v": "https://api.github.com/users/nabilapisol/starred{/owner}{/repo}"
+                          },
+                          {
+                            "k": "subscriptions_url",
+                            "v": "https://api.github.com/users/nabilapisol/subscriptions"
+                          },
+                          {
+                            "k": "type",
+                            "v": "User"
+                          },
+                          {
+                            "k": "url",
+                            "v": "https://api.github.com/users/nabilapisol"
+                          },
+                          {
+                            "k": "user_view_type",
+                            "v": "public"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "k": "artifacts_url",
+                      "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/actions/runs/24095964552/artifacts"
+                    },
+                    {
+                      "k": "cancel_url",
+                      "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/actions/runs/24095964552/cancel"
+                    },
+                    {
+                      "k": "check_suite_id",
+                      "v": 63656205644.0
+                    },
+                    {
+                      "k": "check_suite_node_id",
+                      "v": "CS_kwDOR8QPP88AAAAO0jSdTA"
+                    },
+                    {
+                      "k": "check_suite_url",
+                      "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/check-suites/63656205644"
+                    },
+                    {
+                      "k": "conclusion",
+                      "v": "success"
+                    },
+                    {
+                      "k": "created_at",
+                      "v": "2026-04-07T17:48:00Z"
+                    },
+                    {
+                      "k": "display_title",
+                      "v": "fix ci pipeline"
+                    },
+                    {
+                      "k": "event",
+                      "v": "push"
+                    },
+                    {
+                      "k": "head_branch",
+                      "v": "main"
+                    },
+                    {
+                      "k": "head_commit",
+                      "v": {
+                        "t": 2,
+                        "d": [
+                          {
+                            "k": "author",
+                            "v": {
+                              "t": 2,
+                              "d": [
+                                {
+                                  "k": "email",
+                                  "v": "nabila.pisol@gmail.com"
+                                },
+                                {
+                                  "k": "name",
+                                  "v": "nabilapisol"
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "k": "committer",
+                            "v": {
+                              "t": 2,
+                              "d": [
+                                {
+                                  "k": "email",
+                                  "v": "nabila.pisol@gmail.com"
+                                },
+                                {
+                                  "k": "name",
+                                  "v": "nabilapisol"
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "k": "id",
+                            "v": "96395715c7434652005e96ada32ed61cb4604c22"
+                          },
+                          {
+                            "k": "message",
+                            "v": "fix ci pipeline"
+                          },
+                          {
+                            "k": "timestamp",
+                            "v": "2026-04-07T17:47:50Z"
+                          },
+                          {
+                            "k": "tree_id",
+                            "v": "7875e0d85d6b8ab70ab6a3875b468fc75b0b4461"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "k": "head_repository",
+                      "v": {
+                        "t": 2,
+                        "d": [
+                          {
+                            "k": "archive_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/{archive_format}{/ref}"
+                          },
+                          {
+                            "k": "assignees_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/assignees{/user}"
+                          },
+                          {
+                            "k": "blobs_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/git/blobs{/sha}"
+                          },
+                          {
+                            "k": "branches_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/branches{/branch}"
+                          },
+                          {
+                            "k": "collaborators_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/collaborators{/collaborator}"
+                          },
+                          {
+                            "k": "comments_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/comments{/number}"
+                          },
+                          {
+                            "k": "commits_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/commits{/sha}"
+                          },
+                          {
+                            "k": "compare_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/compare/{base}...{head}"
+                          },
+                          {
+                            "k": "contents_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/contents/{+path}"
+                          },
+                          {
+                            "k": "contributors_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/contributors"
+                          },
+                          {
+                            "k": "deployments_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/deployments"
+                          },
+                          {
+                            "k": "description",
+                            "v": null
+                          },
+                          {
+                            "k": "downloads_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/downloads"
+                          },
+                          {
+                            "k": "events_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/events"
+                          },
+                          {
+                            "k": "fork",
+                            "v": false
+                          },
+                          {
+                            "k": "forks_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/forks"
+                          },
+                          {
+                            "k": "full_name",
+                            "v": "nabilapisol/outfit-recommender"
+                          },
+                          {
+                            "k": "git_commits_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/git/commits{/sha}"
+                          },
+                          {
+                            "k": "git_refs_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/git/refs{/sha}"
+                          },
+                          {
+                            "k": "git_tags_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/git/tags{/sha}"
+                          },
+                          {
+                            "k": "hooks_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/hooks"
+                          },
+                          {
+                            "k": "html_url",
+                            "v": "https://github.com/nabilapisol/outfit-recommender"
+                          },
+                          {
+                            "k": "id",
+                            "v": 1204031295.0
+                          },
+                          {
+                            "k": "issue_comment_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/issues/comments{/number}"
+                          },
+                          {
+                            "k": "issue_events_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/issues/events{/number}"
+                          },
+                          {
+                            "k": "issues_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/issues{/number}"
+                          },
+                          {
+                            "k": "keys_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/keys{/key_id}"
+                          },
+                          {
+                            "k": "labels_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/labels{/name}"
+                          },
+                          {
+                            "k": "languages_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/languages"
+                          },
+                          {
+                            "k": "merges_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/merges"
+                          },
+                          {
+                            "k": "milestones_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/milestones{/number}"
+                          },
+                          {
+                            "k": "name",
+                            "v": "outfit-recommender"
+                          },
+                          {
+                            "k": "node_id",
+                            "v": "R_kgDOR8QPPw"
+                          },
+                          {
+                            "k": "notifications_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/notifications{?since,all,participating}"
+                          },
+                          {
+                            "k": "owner",
+                            "v": {
+                              "t": 2,
+                              "d": [
+                                {
+                                  "k": "avatar_url",
+                                  "v": "https://avatars.githubusercontent.com/u/248300705?v=4"
+                                },
+                                {
+                                  "k": "events_url",
+                                  "v": "https://api.github.com/users/nabilapisol/events{/privacy}"
+                                },
+                                {
+                                  "k": "followers_url",
+                                  "v": "https://api.github.com/users/nabilapisol/followers"
+                                },
+                                {
+                                  "k": "following_url",
+                                  "v": "https://api.github.com/users/nabilapisol/following{/other_user}"
+                                },
+                                {
+                                  "k": "gists_url",
+                                  "v": "https://api.github.com/users/nabilapisol/gists{/gist_id}"
+                                },
+                                {
+                                  "k": "gravatar_id",
+                                  "v": ""
+                                },
+                                {
+                                  "k": "html_url",
+                                  "v": "https://github.com/nabilapisol"
+                                },
+                                {
+                                  "k": "id",
+                                  "v": 248300705.0
+                                },
+                                {
+                                  "k": "login",
+                                  "v": "nabilapisol"
+                                },
+                                {
+                                  "k": "node_id",
+                                  "v": "U_kgDODszEoQ"
+                                },
+                                {
+                                  "k": "organizations_url",
+                                  "v": "https://api.github.com/users/nabilapisol/orgs"
+                                },
+                                {
+                                  "k": "received_events_url",
+                                  "v": "https://api.github.com/users/nabilapisol/received_events"
+                                },
+                                {
+                                  "k": "repos_url",
+                                  "v": "https://api.github.com/users/nabilapisol/repos"
+                                },
+                                {
+                                  "k": "site_admin",
+                                  "v": false
+                                },
+                                {
+                                  "k": "starred_url",
+                                  "v": "https://api.github.com/users/nabilapisol/starred{/owner}{/repo}"
+                                },
+                                {
+                                  "k": "subscriptions_url",
+                                  "v": "https://api.github.com/users/nabilapisol/subscriptions"
+                                },
+                                {
+                                  "k": "type",
+                                  "v": "User"
+                                },
+                                {
+                                  "k": "url",
+                                  "v": "https://api.github.com/users/nabilapisol"
+                                },
+                                {
+                                  "k": "user_view_type",
+                                  "v": "public"
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "k": "private",
+                            "v": false
+                          },
+                          {
+                            "k": "pulls_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/pulls{/number}"
+                          },
+                          {
+                            "k": "releases_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/releases{/id}"
+                          },
+                          {
+                            "k": "stargazers_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/stargazers"
+                          },
+                          {
+                            "k": "statuses_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/statuses/{sha}"
+                          },
+                          {
+                            "k": "subscribers_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/subscribers"
+                          },
+                          {
+                            "k": "subscription_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/subscription"
+                          },
+                          {
+                            "k": "tags_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/tags"
+                          },
+                          {
+                            "k": "teams_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/teams"
+                          },
+                          {
+                            "k": "trees_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/git/trees{/sha}"
+                          },
+                          {
+                            "k": "url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "k": "head_sha",
+                      "v": "96395715c7434652005e96ada32ed61cb4604c22"
+                    },
+                    {
+                      "k": "html_url",
+                      "v": "https://github.com/nabilapisol/outfit-recommender/actions/runs/24095964552"
+                    },
+                    {
+                      "k": "id",
+                      "v": 24095964552.0
+                    },
+                    {
+                      "k": "jobs_url",
+                      "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/actions/runs/24095964552/jobs"
+                    },
+                    {
+                      "k": "logs_url",
+                      "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/actions/runs/24095964552/logs"
+                    },
+                    {
+                      "k": "name",
+                      "v": "CI/CD Pipeline"
+                    },
+                    {
+                      "k": "node_id",
+                      "v": "WFR_kwLOR8QPP88AAAAFnDs9iA"
+                    },
+                    {
+                      "k": "path",
+                      "v": ".github/workflows/ci.yml"
+                    },
+                    {
+                      "k": "previous_attempt_url",
+                      "v": null
+                    },
+                    {
+                      "k": "pull_requests",
+                      "v": {
+                        "t": 1
+                      }
+                    },
+                    {
+                      "k": "referenced_workflows",
+                      "v": {
+                        "t": 1
+                      }
+                    },
+                    {
+                      "k": "repository",
+                      "v": {
+                        "t": 2,
+                        "d": [
+                          {
+                            "k": "archive_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/{archive_format}{/ref}"
+                          },
+                          {
+                            "k": "assignees_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/assignees{/user}"
+                          },
+                          {
+                            "k": "blobs_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/git/blobs{/sha}"
+                          },
+                          {
+                            "k": "branches_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/branches{/branch}"
+                          },
+                          {
+                            "k": "collaborators_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/collaborators{/collaborator}"
+                          },
+                          {
+                            "k": "comments_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/comments{/number}"
+                          },
+                          {
+                            "k": "commits_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/commits{/sha}"
+                          },
+                          {
+                            "k": "compare_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/compare/{base}...{head}"
+                          },
+                          {
+                            "k": "contents_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/contents/{+path}"
+                          },
+                          {
+                            "k": "contributors_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/contributors"
+                          },
+                          {
+                            "k": "deployments_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/deployments"
+                          },
+                          {
+                            "k": "description",
+                            "v": null
+                          },
+                          {
+                            "k": "downloads_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/downloads"
+                          },
+                          {
+                            "k": "events_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/events"
+                          },
+                          {
+                            "k": "fork",
+                            "v": false
+                          },
+                          {
+                            "k": "forks_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/forks"
+                          },
+                          {
+                            "k": "full_name",
+                            "v": "nabilapisol/outfit-recommender"
+                          },
+                          {
+                            "k": "git_commits_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/git/commits{/sha}"
+                          },
+                          {
+                            "k": "git_refs_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/git/refs{/sha}"
+                          },
+                          {
+                            "k": "git_tags_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/git/tags{/sha}"
+                          },
+                          {
+                            "k": "hooks_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/hooks"
+                          },
+                          {
+                            "k": "html_url",
+                            "v": "https://github.com/nabilapisol/outfit-recommender"
+                          },
+                          {
+                            "k": "id",
+                            "v": 1204031295.0
+                          },
+                          {
+                            "k": "issue_comment_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/issues/comments{/number}"
+                          },
+                          {
+                            "k": "issue_events_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/issues/events{/number}"
+                          },
+                          {
+                            "k": "issues_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/issues{/number}"
+                          },
+                          {
+                            "k": "keys_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/keys{/key_id}"
+                          },
+                          {
+                            "k": "labels_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/labels{/name}"
+                          },
+                          {
+                            "k": "languages_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/languages"
+                          },
+                          {
+                            "k": "merges_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/merges"
+                          },
+                          {
+                            "k": "milestones_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/milestones{/number}"
+                          },
+                          {
+                            "k": "name",
+                            "v": "outfit-recommender"
+                          },
+                          {
+                            "k": "node_id",
+                            "v": "R_kgDOR8QPPw"
+                          },
+                          {
+                            "k": "notifications_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/notifications{?since,all,participating}"
+                          },
+                          {
+                            "k": "owner",
+                            "v": {
+                              "t": 2,
+                              "d": [
+                                {
+                                  "k": "avatar_url",
+                                  "v": "https://avatars.githubusercontent.com/u/248300705?v=4"
+                                },
+                                {
+                                  "k": "events_url",
+                                  "v": "https://api.github.com/users/nabilapisol/events{/privacy}"
+                                },
+                                {
+                                  "k": "followers_url",
+                                  "v": "https://api.github.com/users/nabilapisol/followers"
+                                },
+                                {
+                                  "k": "following_url",
+                                  "v": "https://api.github.com/users/nabilapisol/following{/other_user}"
+                                },
+                                {
+                                  "k": "gists_url",
+                                  "v": "https://api.github.com/users/nabilapisol/gists{/gist_id}"
+                                },
+                                {
+                                  "k": "gravatar_id",
+                                  "v": ""
+                                },
+                                {
+                                  "k": "html_url",
+                                  "v": "https://github.com/nabilapisol"
+                                },
+                                {
+                                  "k": "id",
+                                  "v": 248300705.0
+                                },
+                                {
+                                  "k": "login",
+                                  "v": "nabilapisol"
+                                },
+                                {
+                                  "k": "node_id",
+                                  "v": "U_kgDODszEoQ"
+                                },
+                                {
+                                  "k": "organizations_url",
+                                  "v": "https://api.github.com/users/nabilapisol/orgs"
+                                },
+                                {
+                                  "k": "received_events_url",
+                                  "v": "https://api.github.com/users/nabilapisol/received_events"
+                                },
+                                {
+                                  "k": "repos_url",
+                                  "v": "https://api.github.com/users/nabilapisol/repos"
+                                },
+                                {
+                                  "k": "site_admin",
+                                  "v": false
+                                },
+                                {
+                                  "k": "starred_url",
+                                  "v": "https://api.github.com/users/nabilapisol/starred{/owner}{/repo}"
+                                },
+                                {
+                                  "k": "subscriptions_url",
+                                  "v": "https://api.github.com/users/nabilapisol/subscriptions"
+                                },
+                                {
+                                  "k": "type",
+                                  "v": "User"
+                                },
+                                {
+                                  "k": "url",
+                                  "v": "https://api.github.com/users/nabilapisol"
+                                },
+                                {
+                                  "k": "user_view_type",
+                                  "v": "public"
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "k": "private",
+                            "v": false
+                          },
+                          {
+                            "k": "pulls_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/pulls{/number}"
+                          },
+                          {
+                            "k": "releases_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/releases{/id}"
+                          },
+                          {
+                            "k": "stargazers_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/stargazers"
+                          },
+                          {
+                            "k": "statuses_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/statuses/{sha}"
+                          },
+                          {
+                            "k": "subscribers_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/subscribers"
+                          },
+                          {
+                            "k": "subscription_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/subscription"
+                          },
+                          {
+                            "k": "tags_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/tags"
+                          },
+                          {
+                            "k": "teams_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/teams"
+                          },
+                          {
+                            "k": "trees_url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/git/trees{/sha}"
+                          },
+                          {
+                            "k": "url",
+                            "v": "https://api.github.com/repos/nabilapisol/outfit-recommender"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "k": "rerun_url",
+                      "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/actions/runs/24095964552/rerun"
+                    },
+                    {
+                      "k": "run_attempt",
+                      "v": 1.0
+                    },
+                    {
+                      "k": "run_number",
+                      "v": 6.0
+                    },
+                    {
+                      "k": "run_started_at",
+                      "v": "2026-04-07T17:48:00Z"
+                    },
+                    {
+                      "k": "status",
+                      "v": "completed"
+                    },
+                    {
+                      "k": "triggering_actor",
+                      "v": {
+                        "t": 2,
+                        "d": [
+                          {
+                            "k": "avatar_url",
+                            "v": "https://avatars.githubusercontent.com/u/248300705?v=4"
+                          },
+                          {
+                            "k": "events_url",
+                            "v": "https://api.github.com/users/nabilapisol/events{/privacy}"
+                          },
+                          {
+                            "k": "followers_url",
+                            "v": "https://api.github.com/users/nabilapisol/followers"
+                          },
+                          {
+                            "k": "following_url",
+                            "v": "https://api.github.com/users/nabilapisol/following{/other_user}"
+                          },
+                          {
+                            "k": "gists_url",
+                            "v": "https://api.github.com/users/nabilapisol/gists{/gist_id}"
+                          },
+                          {
+                            "k": "gravatar_id",
+                            "v": ""
+                          },
+                          {
+                            "k": "html_url",
+                            "v": "https://github.com/nabilapisol"
+                          },
+                          {
+                            "k": "id",
+                            "v": 248300705.0
+                          },
+                          {
+                            "k": "login",
+                            "v": "nabilapisol"
+                          },
+                          {
+                            "k": "node_id",
+                            "v": "U_kgDODszEoQ"
+                          },
+                          {
+                            "k": "organizations_url",
+                            "v": "https://api.github.com/users/nabilapisol/orgs"
+                          },
+                          {
+                            "k": "received_events_url",
+                            "v": "https://api.github.com/users/nabilapisol/received_events"
+                          },
+                          {
+                            "k": "repos_url",
+                            "v": "https://api.github.com/users/nabilapisol/repos"
+                          },
+                          {
+                            "k": "site_admin",
+                            "v": false
+                          },
+                          {
+                            "k": "starred_url",
+                            "v": "https://api.github.com/users/nabilapisol/starred{/owner}{/repo}"
+                          },
+                          {
+                            "k": "subscriptions_url",
+                            "v": "https://api.github.com/users/nabilapisol/subscriptions"
+                          },
+                          {
+                            "k": "type",
+                            "v": "User"
+                          },
+                          {
+                            "k": "url",
+                            "v": "https://api.github.com/users/nabilapisol"
+                          },
+                          {
+                            "k": "user_view_type",
+                            "v": "public"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "k": "updated_at",
+                      "v": "2026-04-07T17:49:14Z"
+                    },
+                    {
+                      "k": "url",
+                      "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/actions/runs/24095964552"
+                    },
+                    {
+                      "k": "workflow_id",
+                      "v": 257483709.0
+                    },
+                    {
+                      "k": "workflow_url",
+                      "v": "https://api.github.com/repos/nabilapisol/outfit-recommender/actions/workflows/257483709"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "k": "workflow_ref",
+          "v": "nabilapisol/outfit-recommender/.github/workflows/deploy.yml@refs/heads/main"
+        },
+        {
+          "k": "workflow_sha",
+          "v": "96395715c7434652005e96ada32ed61cb4604c22"
+        },
+        {
+          "k": "repository_id",
+          "v": "1204031295"
+        },
+        {
+          "k": "triggering_actor",
+          "v": "nabilapisol"
+        }
+      ]
+    },
+    "inputs": {
+      "t": 2
+    },
+    "job": {
+      "t": 2,
+      "d": [
+        {
+          "k": "check_run_id",
+          "v": 70294689984.0
+        }
+      ]
+    },
+    "matrix": null,
+    "needs": {
+      "t": 2
+    },
+    "strategy": {
+      "t": 2,
+      "d": [
+        {
+          "k": "fail-fast",
+          "v": true
+        },
+        {
+          "k": "job-index",
+          "v": 0.0
+        },
+        {
+          "k": "job-total",
+          "v": 1.0
+        },
+        {
+          "k": "max-parallel",
+          "v": 1.0
+        }
+      ]
+    },
+    "vars": {
+      "t": 2
+    }
+  },
+  "billingOwnerId": "U_kgDODszEoQ"
+}
+[2026-04-07 17:49:21Z INFO JobRunner] Job ID c0a769e5-7843-50e6-bece-b3248feae233
+[2026-04-07 17:49:21Z INFO ConfigurationStore] currentAssemblyLocation: C:\Users\user\Downloads\outfit-recommender\actions-runner\bin\Runner.Worker.dll
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:49:21Z INFO ConfigurationStore] binPath: C:\Users\user\Downloads\outfit-recommender\actions-runner\bin
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:49:21Z INFO ConfigurationStore] RootFolder: C:\Users\user\Downloads\outfit-recommender\actions-runner
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:49:21Z INFO HostContext] Well known config file 'Runner': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\.runner'
+[2026-04-07 17:49:21Z INFO ConfigurationStore] ConfigFilePath: C:\Users\user\Downloads\outfit-recommender\actions-runner\.runner
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:49:21Z INFO HostContext] Well known config file 'MigratedRunner': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\.runner_migrated'
+[2026-04-07 17:49:21Z INFO ConfigurationStore] MigratedConfigFilePath: C:\Users\user\Downloads\outfit-recommender\actions-runner\.runner_migrated
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:49:21Z INFO HostContext] Well known config file 'Credentials': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\.credentials'
+[2026-04-07 17:49:21Z INFO ConfigurationStore] CredFilePath: C:\Users\user\Downloads\outfit-recommender\actions-runner\.credentials
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:49:21Z INFO HostContext] Well known config file 'MigratedCredentials': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\.credentials_migrated'
+[2026-04-07 17:49:21Z INFO ConfigurationStore] MigratedCredFilePath: C:\Users\user\Downloads\outfit-recommender\actions-runner\.credentials_migrated
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:49:21Z INFO HostContext] Well known config file 'Service': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\.service'
+[2026-04-07 17:49:21Z INFO ConfigurationStore] ServiceConfigFilePath: C:\Users\user\Downloads\outfit-recommender\actions-runner\.service
+[2026-04-07 17:49:21Z INFO ConfigurationStore] Read setting file: 408 chars
+[2026-04-07 17:49:21Z INFO JobRunner] Initializing launch client
+[2026-04-07 17:49:21Z INFO JobServerQueue] Initializing results client
+[2026-04-07 17:49:21Z INFO ResultServer] Creating websocket client ...wss://results-receiver.actions.githubusercontent.com/_ws/ingest.sock
+[2026-04-07 17:49:21Z INFO ResultServer] Attempting to start websocket client with delay 00:00:00.
+[2026-04-07 17:49:21Z INFO JobServerQueue] Start process web console line queue.
+[2026-04-07 17:49:21Z INFO JobServerQueue] Start process file upload queue.
+[2026-04-07 17:49:21Z INFO JobServerQueue] Start results file upload queue.
+[2026-04-07 17:49:21Z INFO JobServerQueue] Starting results-based upload queue...
+[2026-04-07 17:49:21Z INFO JobServerQueue] Start process timeline update queue.
+[2026-04-07 17:49:21Z INFO ExecutionContext] Initializing Job context
+[2026-04-07 17:49:21Z INFO ExecutionContext] Initialize GitHub context
+[2026-04-07 17:49:21Z INFO ExecutionContext] Initialize Env context
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Diag': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_diag'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Diag': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_diag'
+[2026-04-07 17:49:21Z INFO JobRunner] Starting the job execution context.
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Work': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_work'
+[2026-04-07 17:49:21Z INFO JobRunner] Validating directory permissions for: 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_work'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Work': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_work'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Tools': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_work\_tool'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Work': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_work'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Temp': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_work\_temp'
+[2026-04-07 17:49:21Z INFO JobRunner] Getting job extension.
+[2026-04-07 17:49:21Z INFO JobRunner] Initialize job. Getting all job steps.
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Diag': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_diag'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Diag': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_diag'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:49:21Z INFO HostContext] Well known config file 'Credentials': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\.credentials'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:49:21Z INFO HostContext] Well known config file 'SetupInfo': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\.setup_info'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Work': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_work'
+[2026-04-07 17:49:21Z INFO PipelineDirectoryManager] Loading tracking config if exists: C:\Users\user\Downloads\outfit-recommender\actions-runner\_work\_PipelineMapping\nabilapisol/outfit-recommender\PipelineFolder.json
+[2026-04-07 17:49:21Z INFO PipelineDirectoryManager] Creating a new tracking config file.
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Work': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_work'
+[2026-04-07 17:49:21Z INFO PipelineDirectoryManager] Creating pipeline directory.
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Work': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_work'
+[2026-04-07 17:49:21Z INFO PipelineDirectoryManager] Creating workspace directory.
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Work': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_work'
+[2026-04-07 17:49:21Z INFO JobExtension] Downloading actions
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Work': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_work'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Actions': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_work\_actions'
+[2026-04-07 17:49:21Z INFO JobExtension] Adding .
+[2026-04-07 17:49:21Z INFO JobExtension] Adding .
+[2026-04-07 17:49:21Z INFO JobExtension] Adding .
+[2026-04-07 17:49:21Z INFO JobExtension] Adding .
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Diag': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_diag'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Diag': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_diag'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Diag': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_diag'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Diag': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_diag'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Diag': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_diag'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Diag': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_diag'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Diag': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_diag'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Diag': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_diag'
+[2026-04-07 17:49:21Z INFO JobExtension] Total accessible running process: 328.
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Work': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_work'
+[2026-04-07 17:49:21Z INFO JobExtension] Start checking server connectivity.
+[2026-04-07 17:49:21Z INFO JobExtension] Check server connectivity for https://broker.actions.githubusercontent.com/health.
+[2026-04-07 17:49:21Z INFO JobExtension] Check server connectivity for https://token.actions.githubusercontent.com/ready.
+[2026-04-07 17:49:21Z INFO JobExtension] Check server connectivity for https://run.actions.githubusercontent.com/health.
+[2026-04-07 17:49:21Z INFO JobExtension] Start checking service connectivity in background.
+[2026-04-07 17:49:21Z INFO ExecutionContext] Publish step telemetry for current step {
+  "action": "setup_job",
+  "type": "runner",
+  "stage": "Pre",
+  "stepId": "222e2042-f0a9-42e6-84fc-e8035d5aad9a",
+  "result": "succeeded",
+  "errorMessages": [],
+  "executionTimeInSeconds": 1,
+  "startTime": "2026-04-07T17:49:21.5458567Z",
+  "finishTime": "2026-04-07T17:49:21.6107276Z"
+}.
+[2026-04-07 17:49:21Z INFO JobRunner] Total job steps: 4.
+[2026-04-07 17:49:21Z INFO JobRunner] Run all job steps.
+[2026-04-07 17:49:21Z INFO StepsRunner] Processing step: DisplayName='Pull latest Docker image'
+[2026-04-07 17:49:21Z INFO StepsRunner] Evaluating: success()
+[2026-04-07 17:49:21Z INFO StepsRunner] Result: true
+[2026-04-07 17:49:21Z INFO StepsRunner] Starting the step.
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Work': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_work'
+[2026-04-07 17:49:21Z INFO StepsRunner] Which2: 'chcp'
+[2026-04-07 17:49:21Z INFO StepsRunner] Location: 'C:\WINDOWS\system32\chcp.COM'
+[2026-04-07 17:49:21Z INFO ProcessInvokerWrapper] Starting process:
+[2026-04-07 17:49:21Z INFO ProcessInvokerWrapper]   File name: 'C:\WINDOWS\system32\chcp.COM'
+[2026-04-07 17:49:21Z INFO ProcessInvokerWrapper]   Arguments: '65001'
+[2026-04-07 17:49:21Z INFO ProcessInvokerWrapper]   Working directory: 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_work'
+[2026-04-07 17:49:21Z INFO ProcessInvokerWrapper]   Require exit code zero: 'False'
+[2026-04-07 17:49:21Z INFO ProcessInvokerWrapper]   Encoding web name:  ; code page: ''
+[2026-04-07 17:49:21Z INFO ProcessInvokerWrapper]   Force kill process on cancellation: 'False'
+[2026-04-07 17:49:21Z INFO ProcessInvokerWrapper]   Redirected STDIN: 'False'
+[2026-04-07 17:49:21Z INFO ProcessInvokerWrapper]   Persist current code page: 'True'
+[2026-04-07 17:49:21Z INFO ProcessInvokerWrapper]   Keep redirected STDIN open: 'False'
+[2026-04-07 17:49:21Z INFO ProcessInvokerWrapper]   High priority process: 'False'
+[2026-04-07 17:49:21Z INFO ProcessInvokerWrapper] Process started with process id 14748, waiting for process exit.
+[2026-04-07 17:49:21Z INFO Worker] Listening for cancel message from the channel.
+[2026-04-07 17:49:21Z INFO Worker] Waiting for the job to complete or for a cancel message from the channel.
+[2026-04-07 17:49:21Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2026-04-07 17:49:21Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2026-04-07 17:49:21Z INFO ProcessInvokerWrapper] Finished process 14748 with exit code 0, and elapsed time 00:00:00.0119937.
+[2026-04-07 17:49:21Z INFO StepsRunner] Successfully returned to code page 65001 (UTF8)
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Work': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_work'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Temp': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_work\_temp'
+[2026-04-07 17:49:21Z INFO ExecutionContext] Write event payload to C:\Users\user\Downloads\outfit-recommender\actions-runner\_work\_temp\_github_workflow\event.json
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Work': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_work'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Temp': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_work\_temp'
+[2026-04-07 17:49:21Z INFO ExtensionManager] Getting extensions for interface: 'GitHub.Runner.Worker.IFileCommandExtension'
+[2026-04-07 17:49:21Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.AddPathFileCommand, Runner.Worker
+[2026-04-07 17:49:21Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.SetEnvFileCommand, Runner.Worker
+[2026-04-07 17:49:21Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.CreateStepSummaryCommand, Runner.Worker
+[2026-04-07 17:49:21Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.SaveStateFileCommand, Runner.Worker
+[2026-04-07 17:49:21Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.SetOutputFileCommand, Runner.Worker
+[2026-04-07 17:49:21Z INFO ExtensionManager] Getting extensions for interface: 'GitHub.Runner.Worker.IActionCommandExtension'
+[2026-04-07 17:49:21Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.InternalPluginSetRepoPathCommandExtension, Runner.Worker
+[2026-04-07 17:49:21Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.SetEnvCommandExtension, Runner.Worker
+[2026-04-07 17:49:21Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.SetOutputCommandExtension, Runner.Worker
+[2026-04-07 17:49:21Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.SaveStateCommandExtension, Runner.Worker
+[2026-04-07 17:49:21Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.AddPathCommandExtension, Runner.Worker
+[2026-04-07 17:49:21Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.AddMaskCommandExtension, Runner.Worker
+[2026-04-07 17:49:21Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.AddMatcherCommandExtension, Runner.Worker
+[2026-04-07 17:49:21Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.RemoveMatcherCommandExtension, Runner.Worker
+[2026-04-07 17:49:21Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.WarningCommandExtension, Runner.Worker
+[2026-04-07 17:49:21Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.ErrorCommandExtension, Runner.Worker
+[2026-04-07 17:49:21Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.NoticeCommandExtension, Runner.Worker
+[2026-04-07 17:49:21Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.DebugCommandExtension, Runner.Worker
+[2026-04-07 17:49:21Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.GroupCommandExtension, Runner.Worker
+[2026-04-07 17:49:21Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.EndGroupCommandExtension, Runner.Worker
+[2026-04-07 17:49:21Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.EchoCommandExtension, Runner.Worker
+[2026-04-07 17:49:21Z INFO ActionCommandManager] Register action command extension for command internal-set-repo-path
+[2026-04-07 17:49:21Z INFO ActionCommandManager] Register action command extension for command set-env
+[2026-04-07 17:49:21Z INFO ActionCommandManager] Register action command extension for command set-output
+[2026-04-07 17:49:21Z INFO ActionCommandManager] Register action command extension for command save-state
+[2026-04-07 17:49:21Z INFO ActionCommandManager] Register action command extension for command add-path
+[2026-04-07 17:49:21Z INFO ActionCommandManager] Register action command extension for command add-mask
+[2026-04-07 17:49:21Z INFO ActionCommandManager] Register action command extension for command add-matcher
+[2026-04-07 17:49:21Z INFO ActionCommandManager] Register action command extension for command remove-matcher
+[2026-04-07 17:49:21Z INFO ActionCommandManager] Register action command extension for command warning
+[2026-04-07 17:49:21Z INFO ActionCommandManager] Register action command extension for command error
+[2026-04-07 17:49:21Z INFO ActionCommandManager] Register action command extension for command notice
+[2026-04-07 17:49:21Z INFO ActionCommandManager] Register action command extension for command debug
+[2026-04-07 17:49:21Z INFO ActionCommandManager] Register action command extension for command group
+[2026-04-07 17:49:21Z INFO ActionCommandManager] Register action command extension for command endgroup
+[2026-04-07 17:49:21Z INFO ActionCommandManager] Register action command extension for command echo
+[2026-04-07 17:49:21Z INFO ScriptHandler] Which2: 'pwsh'
+[2026-04-07 17:49:21Z INFO ScriptHandler] pwsh: command not found. Make sure 'pwsh' is installed and its location included in the 'Path' environment variable.
+[2026-04-07 17:49:21Z INFO ScriptHandler] Defaulting to powershell
+[2026-04-07 17:49:21Z INFO ScriptHandler] Which2: 'powershell'
+[2026-04-07 17:49:21Z INFO ScriptHandler] Location: 'C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Work': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_work'
+[2026-04-07 17:49:21Z INFO HostContext] Well known directory 'Temp': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_work\_temp'
+[2026-04-07 17:49:21Z INFO ScriptHandler] Which2: 'pwsh'
+[2026-04-07 17:49:21Z INFO ScriptHandler] pwsh: command not found. Make sure 'pwsh' is installed and its location included in the 'Path' environment variable.
+[2026-04-07 17:49:21Z INFO ScriptHandler] Defaulting to powershell
+[2026-04-07 17:49:21Z INFO ScriptHandler] Which2: 'powershell'
+[2026-04-07 17:49:21Z INFO ScriptHandler] Location: 'C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE'
+[2026-04-07 17:49:21Z INFO ProcessInvokerWrapper] Starting process:
+[2026-04-07 17:49:21Z INFO ProcessInvokerWrapper]   File name: 'C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE'
+[2026-04-07 17:49:21Z INFO ProcessInvokerWrapper]   Arguments: '-command ". 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_work\_temp\f6a3862a-0d56-4019-af9b-deeb3f83aacc.ps1'"'
+[2026-04-07 17:49:21Z INFO ProcessInvokerWrapper]   Working directory: 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_work\outfit-recommender\outfit-recommender'
+[2026-04-07 17:49:21Z INFO ProcessInvokerWrapper]   Require exit code zero: 'False'
+[2026-04-07 17:49:21Z INFO ProcessInvokerWrapper]   Encoding web name:  ; code page: ''
+[2026-04-07 17:49:21Z INFO ProcessInvokerWrapper]   Force kill process on cancellation: 'False'
+[2026-04-07 17:49:21Z INFO ProcessInvokerWrapper]   Redirected STDIN: 'False'
+[2026-04-07 17:49:21Z INFO ProcessInvokerWrapper]   Persist current code page: 'True'
+[2026-04-07 17:49:21Z INFO ProcessInvokerWrapper]   Keep redirected STDIN open: 'False'
+[2026-04-07 17:49:21Z INFO ProcessInvokerWrapper]   High priority process: 'False'
+[2026-04-07 17:49:21Z INFO ProcessInvokerWrapper] Process started with process id 13748, waiting for process exit.
+[2026-04-07 17:49:22Z INFO ResultServer] Successfully started websocket client.
+[2026-04-07 17:49:22Z INFO JobServerQueue] Try to append 1 batches web console lines for record '222e2042-f0a9-42e6-84fc-e8035d5aad9a', success rate: 1/1.
+[2026-04-07 17:49:22Z INFO JobServerQueue] Try to append 1 batches web console lines for record '56ba0d82-5c97-413f-a32a-7e9650131ba8', success rate: 1/1.
+[2026-04-07 17:49:22Z INFO JobServerQueue] Got a step log file to send to results service.
+[2026-04-07 17:49:22Z INFO JobServerQueue] Starting upload of step log file to results service ResultsLog, C:\Users\user\Downloads\outfit-recommender\actions-runner\_diag\blocks\5561a0c9-7f44-48b2-b6b3-e3e9dca6c975_222e2042-f0a9-42e6-84fc-e8035d5aad9a.1
+[2026-04-07 17:49:22Z INFO JobServerQueue] Try to upload 1 log files or attachments, success rate: 1/1.
+[2026-04-07 17:49:22Z INFO JobServerQueue] Job timeline record has been updated for the first time.
+[2026-04-07 17:49:23Z INFO JobServerQueue] Tried to upload 1 file(s) to results, success rate: 1/1.
+[2026-04-07 17:49:24Z INFO JobServerQueue] Try to append 1 batches web console lines for record '56ba0d82-5c97-413f-a32a-7e9650131ba8', success rate: 1/1.
+[2026-04-07 17:49:25Z INFO JobServerQueue] Try to append 1 batches web console lines for record '56ba0d82-5c97-413f-a32a-7e9650131ba8', success rate: 1/1.
+[2026-04-07 17:49:26Z INFO JobServerQueue] Try to append 1 batches web console lines for record '56ba0d82-5c97-413f-a32a-7e9650131ba8', success rate: 1/1.
+[2026-04-07 17:49:26Z INFO JobServerQueue] Try to append 1 batches web console lines for record '56ba0d82-5c97-413f-a32a-7e9650131ba8', success rate: 1/1.
+[2026-04-07 17:49:27Z INFO JobServerQueue] Try to append 1 batches web console lines for record '56ba0d82-5c97-413f-a32a-7e9650131ba8', success rate: 1/1.
+[2026-04-07 17:49:29Z INFO JobServerQueue] Try to append 1 batches web console lines for record '56ba0d82-5c97-413f-a32a-7e9650131ba8', success rate: 1/1.
+[2026-04-07 17:49:31Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:49:31Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:49:31Z INFO HostContext] Well known directory 'Work': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_work'
+[2026-04-07 17:49:36Z INFO JobServerQueue] Try to append 1 batches web console lines for record '56ba0d82-5c97-413f-a32a-7e9650131ba8', success rate: 1/1.
+[2026-04-07 17:49:41Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:49:41Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:49:41Z INFO HostContext] Well known directory 'Work': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_work'
+[2026-04-07 17:49:42Z INFO JobServerQueue] Try to append 1 batches web console lines for record '56ba0d82-5c97-413f-a32a-7e9650131ba8', success rate: 1/1.
+[2026-04-07 17:49:44Z INFO JobServerQueue] Try to append 1 batches web console lines for record '56ba0d82-5c97-413f-a32a-7e9650131ba8', success rate: 1/1.
+[2026-04-07 17:49:51Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:49:51Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:49:51Z INFO HostContext] Well known directory 'Work': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_work'
+[2026-04-07 17:49:58Z INFO JobServerQueue] Try to append 1 batches web console lines for record '56ba0d82-5c97-413f-a32a-7e9650131ba8', success rate: 1/1.
+[2026-04-07 17:49:59Z INFO JobServerQueue] Try to append 1 batches web console lines for record '56ba0d82-5c97-413f-a32a-7e9650131ba8', success rate: 1/1.
+[2026-04-07 17:49:59Z INFO JobServerQueue] Try to append 1 batches web console lines for record '56ba0d82-5c97-413f-a32a-7e9650131ba8', success rate: 1/1.
+[2026-04-07 17:50:00Z INFO JobServerQueue] Try to append 1 batches web console lines for record '56ba0d82-5c97-413f-a32a-7e9650131ba8', success rate: 1/1.
+[2026-04-07 17:50:01Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:50:01Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:50:01Z INFO HostContext] Well known directory 'Work': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_work'
+[2026-04-07 17:50:04Z INFO JobServerQueue] Try to append 1 batches web console lines for record '56ba0d82-5c97-413f-a32a-7e9650131ba8', success rate: 1/1.
+[2026-04-07 17:50:11Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:50:11Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:50:11Z INFO HostContext] Well known directory 'Work': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_work'
+[2026-04-07 17:50:21Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:50:21Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:50:21Z INFO HostContext] Well known directory 'Work': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_work'
+[2026-04-07 17:50:24Z INFO JobServerQueue] Stop aggressive process web console line queue.
+[2026-04-07 17:50:26Z INFO JobServerQueue] Try to append 1 batches web console lines for record '56ba0d82-5c97-413f-a32a-7e9650131ba8', success rate: 1/1.
+[2026-04-07 17:50:31Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:50:31Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:50:31Z INFO HostContext] Well known directory 'Work': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_work'
+[2026-04-07 17:50:35Z INFO JobServerQueue] Try to append 1 batches web console lines for record '56ba0d82-5c97-413f-a32a-7e9650131ba8', success rate: 1/1.
+[2026-04-07 17:50:37Z INFO JobServerQueue] Try to append 1 batches web console lines for record '56ba0d82-5c97-413f-a32a-7e9650131ba8', success rate: 1/1.
+[2026-04-07 17:50:37Z INFO JobServerQueue] Try to append 1 batches web console lines for record '56ba0d82-5c97-413f-a32a-7e9650131ba8', success rate: 1/1.
+[2026-04-07 17:50:41Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:50:41Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:50:41Z INFO HostContext] Well known directory 'Work': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_work'
+[2026-04-07 17:50:50Z INFO JobServerQueue] Try to append 1 batches web console lines for record '56ba0d82-5c97-413f-a32a-7e9650131ba8', success rate: 1/1.
+[2026-04-07 17:50:51Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:50:51Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:50:51Z INFO HostContext] Well known directory 'Work': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_work'
+[2026-04-07 17:50:53Z INFO JobServerQueue] Try to append 1 batches web console lines for record '56ba0d82-5c97-413f-a32a-7e9650131ba8', success rate: 1/1.
+[2026-04-07 17:50:53Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2026-04-07 17:50:53Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2026-04-07 17:50:53Z INFO ProcessInvokerWrapper] Finished process 13748 with exit code 0, and elapsed time 00:01:31.6436840.
+[2026-04-07 17:50:53Z INFO CreateStepSummaryCommand] Step Summary file (C:\Users\user\Downloads\outfit-recommender\actions-runner\_work\_temp\_runner_file_commands\step_summary_f0055d56-6c92-441e-812b-05e99a0e3d47) is empty; skipping attachment upload
+[2026-04-07 17:50:53Z INFO StepsRunner] Step result: 
+[2026-04-07 17:50:53Z INFO ExecutionContext] Publish step telemetry for current step {
+  "action": "powershell",
+  "type": "run",
+  "stage": "Main",
+  "stepId": "56ba0d82-5c97-413f-a32a-7e9650131ba8",
+  "stepContextName": "__run",
+  "result": "succeeded",
+  "errorMessages": [],
+  "executionTimeInSeconds": 92,
+  "startTime": "2026-04-07T17:49:21.6183271Z",
+  "finishTime": "2026-04-07T17:50:53.3328889Z"
+}.
+[2026-04-07 17:50:53Z INFO StepsRunner] No need for updating job result with current step result 'Succeeded'.
+[2026-04-07 17:50:53Z INFO StepsRunner] Current state: job state = ''
+[2026-04-07 17:50:53Z INFO StepsRunner] Processing step: DisplayName='Stop old container'
+[2026-04-07 17:50:53Z INFO StepsRunner] Evaluating: success()
+[2026-04-07 17:50:53Z INFO StepsRunner] Result: true
+[2026-04-07 17:50:53Z INFO StepsRunner] Starting the step.
+[2026-04-07 17:50:53Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:50:53Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:50:53Z INFO HostContext] Well known directory 'Work': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_work'
+[2026-04-07 17:50:53Z INFO StepsRunner] Which2: 'chcp'
+[2026-04-07 17:50:53Z INFO StepsRunner] Location: 'C:\WINDOWS\system32\chcp.COM'
+[2026-04-07 17:50:53Z INFO ProcessInvokerWrapper] Starting process:
+[2026-04-07 17:50:53Z INFO ProcessInvokerWrapper]   File name: 'C:\WINDOWS\system32\chcp.COM'
+[2026-04-07 17:50:53Z INFO ProcessInvokerWrapper]   Arguments: '65001'
+[2026-04-07 17:50:53Z INFO ProcessInvokerWrapper]   Working directory: 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_work'
+[2026-04-07 17:50:53Z INFO ProcessInvokerWrapper]   Require exit code zero: 'False'
+[2026-04-07 17:50:53Z INFO ProcessInvokerWrapper]   Encoding web name:  ; code page: ''
+[2026-04-07 17:50:53Z INFO ProcessInvokerWrapper]   Force kill process on cancellation: 'False'
+[2026-04-07 17:50:53Z INFO ProcessInvokerWrapper]   Redirected STDIN: 'False'
+[2026-04-07 17:50:53Z INFO ProcessInvokerWrapper]   Persist current code page: 'True'
+[2026-04-07 17:50:53Z INFO ProcessInvokerWrapper]   Keep redirected STDIN open: 'False'
+[2026-04-07 17:50:53Z INFO ProcessInvokerWrapper]   High priority process: 'False'
+[2026-04-07 17:50:53Z INFO ProcessInvokerWrapper] Process started with process id 5416, waiting for process exit.
+[2026-04-07 17:50:53Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2026-04-07 17:50:53Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2026-04-07 17:50:53Z INFO ProcessInvokerWrapper] Finished process 5416 with exit code 0, and elapsed time 00:00:00.0155378.
+[2026-04-07 17:50:53Z INFO StepsRunner] Successfully returned to code page 65001 (UTF8)
+[2026-04-07 17:50:53Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:50:53Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:50:53Z INFO HostContext] Well known directory 'Work': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_work'
+[2026-04-07 17:50:53Z INFO HostContext] Well known directory 'Temp': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_work\_temp'
+[2026-04-07 17:50:53Z INFO ExecutionContext] Write event payload to C:\Users\user\Downloads\outfit-recommender\actions-runner\_work\_temp\_github_workflow\event.json
+[2026-04-07 17:50:53Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:50:53Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:50:53Z INFO HostContext] Well known directory 'Work': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_work'
+[2026-04-07 17:50:53Z INFO HostContext] Well known directory 'Temp': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_work\_temp'
+[2026-04-07 17:50:53Z INFO ExtensionManager] Getting extensions for interface: 'GitHub.Runner.Worker.IFileCommandExtension'
+[2026-04-07 17:50:53Z INFO ExtensionManager] Getting extensions for interface: 'GitHub.Runner.Worker.IActionCommandExtension'
+[2026-04-07 17:50:53Z INFO ActionCommandManager] Register action command extension for command internal-set-repo-path
+[2026-04-07 17:50:53Z INFO ActionCommandManager] Register action command extension for command set-env
+[2026-04-07 17:50:53Z INFO ActionCommandManager] Register action command extension for command set-output
+[2026-04-07 17:50:53Z INFO ActionCommandManager] Register action command extension for command save-state
+[2026-04-07 17:50:53Z INFO ActionCommandManager] Register action command extension for command add-path
+[2026-04-07 17:50:53Z INFO ActionCommandManager] Register action command extension for command add-mask
+[2026-04-07 17:50:53Z INFO ActionCommandManager] Register action command extension for command add-matcher
+[2026-04-07 17:50:53Z INFO ActionCommandManager] Register action command extension for command remove-matcher
+[2026-04-07 17:50:53Z INFO ActionCommandManager] Register action command extension for command warning
+[2026-04-07 17:50:53Z INFO ActionCommandManager] Register action command extension for command error
+[2026-04-07 17:50:53Z INFO ActionCommandManager] Register action command extension for command notice
+[2026-04-07 17:50:53Z INFO ActionCommandManager] Register action command extension for command debug
+[2026-04-07 17:50:53Z INFO ActionCommandManager] Register action command extension for command group
+[2026-04-07 17:50:53Z INFO ActionCommandManager] Register action command extension for command endgroup
+[2026-04-07 17:50:53Z INFO ActionCommandManager] Register action command extension for command echo
+[2026-04-07 17:50:53Z INFO ScriptHandler] Which2: 'pwsh'
+[2026-04-07 17:50:53Z INFO ScriptHandler] pwsh: command not found. Make sure 'pwsh' is installed and its location included in the 'Path' environment variable.
+[2026-04-07 17:50:53Z INFO ScriptHandler] Defaulting to powershell
+[2026-04-07 17:50:53Z INFO ScriptHandler] Which2: 'powershell'
+[2026-04-07 17:50:53Z INFO ScriptHandler] Location: 'C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE'
+[2026-04-07 17:50:53Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:50:53Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:50:53Z INFO HostContext] Well known directory 'Work': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_work'
+[2026-04-07 17:50:53Z INFO HostContext] Well known directory 'Temp': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_work\_temp'
+[2026-04-07 17:50:53Z INFO ScriptHandler] Which2: 'pwsh'
+[2026-04-07 17:50:53Z INFO ScriptHandler] pwsh: command not found. Make sure 'pwsh' is installed and its location included in the 'Path' environment variable.
+[2026-04-07 17:50:53Z INFO ScriptHandler] Defaulting to powershell
+[2026-04-07 17:50:53Z INFO ScriptHandler] Which2: 'powershell'
+[2026-04-07 17:50:53Z INFO ScriptHandler] Location: 'C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE'
+[2026-04-07 17:50:53Z INFO ProcessInvokerWrapper] Starting process:
+[2026-04-07 17:50:53Z INFO ProcessInvokerWrapper]   File name: 'C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE'
+[2026-04-07 17:50:53Z INFO ProcessInvokerWrapper]   Arguments: '-command ". 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_work\_temp\6699ced4-5a23-4043-8176-04e637d46a5d.ps1'"'
+[2026-04-07 17:50:53Z INFO ProcessInvokerWrapper]   Working directory: 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_work\outfit-recommender\outfit-recommender'
+[2026-04-07 17:50:53Z INFO ProcessInvokerWrapper]   Require exit code zero: 'False'
+[2026-04-07 17:50:53Z INFO ProcessInvokerWrapper]   Encoding web name:  ; code page: ''
+[2026-04-07 17:50:53Z INFO ProcessInvokerWrapper]   Force kill process on cancellation: 'False'
+[2026-04-07 17:50:53Z INFO ProcessInvokerWrapper]   Redirected STDIN: 'False'
+[2026-04-07 17:50:53Z INFO ProcessInvokerWrapper]   Persist current code page: 'True'
+[2026-04-07 17:50:53Z INFO ProcessInvokerWrapper]   Keep redirected STDIN open: 'False'
+[2026-04-07 17:50:53Z INFO ProcessInvokerWrapper]   High priority process: 'False'
+[2026-04-07 17:50:53Z INFO ProcessInvokerWrapper] Process started with process id 17712, waiting for process exit.
+[2026-04-07 17:50:53Z INFO JobServerQueue] Try to upload 1 log files or attachments, success rate: 1/1.
+[2026-04-07 17:50:53Z INFO JobServerQueue] Try to append 1 batches web console lines for record '460bc7f3-f43c-4c24-8ea8-76f891d515aa', success rate: 1/1.
+[2026-04-07 17:50:53Z INFO JobServerQueue] Got a step log file to send to results service.
+[2026-04-07 17:50:53Z INFO JobServerQueue] Starting upload of step log file to results service ResultsLog, C:\Users\user\Downloads\outfit-recommender\actions-runner\_diag\blocks\5561a0c9-7f44-48b2-b6b3-e3e9dca6c975_56ba0d82-5c97-413f-a32a-7e9650131ba8.1
+[2026-04-07 17:50:53Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2026-04-07 17:50:53Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2026-04-07 17:50:53Z INFO ProcessInvokerWrapper] Finished process 17712 with exit code 1, and elapsed time 00:00:00.5420250.
+[2026-04-07 17:50:53Z INFO CreateStepSummaryCommand] Step Summary file (C:\Users\user\Downloads\outfit-recommender\actions-runner\_work\_temp\_runner_file_commands\step_summary_ce57ed7b-8635-4f57-bc28-decf4571d167) is empty; skipping attachment upload
+[2026-04-07 17:50:53Z INFO StepsRunner] Step result: Failed
+[2026-04-07 17:50:53Z INFO ExecutionContext] Publish step telemetry for current step {
+  "action": "powershell",
+  "type": "run",
+  "stage": "Main",
+  "stepId": "460bc7f3-f43c-4c24-8ea8-76f891d515aa",
+  "stepContextName": "__run_2",
+  "result": "failed",
+  "errorMessages": [
+    "Process completed with exit code 1."
+  ],
+  "executionTimeInSeconds": 1,
+  "startTime": "2026-04-07T17:50:53.3346849Z",
+  "finishTime": "2026-04-07T17:50:53.9289078Z"
+}.
+[2026-04-07 17:50:53Z INFO StepsRunner] Update job result with current step result 'Failed'.
+[2026-04-07 17:50:53Z INFO StepsRunner] Current state: job state = 'Failed'
+[2026-04-07 17:50:53Z INFO StepsRunner] Processing step: DisplayName='Remove old container'
+[2026-04-07 17:50:53Z INFO StepsRunner] Evaluating: success()
+[2026-04-07 17:50:53Z INFO StepsRunner] Result: false
+[2026-04-07 17:50:53Z INFO StepsRunner] Skipping step due to condition evaluation.
+[2026-04-07 17:50:53Z INFO StepsRunner] No need for updating job result with current step result 'Skipped'.
+[2026-04-07 17:50:53Z INFO StepsRunner] Current state: job state = 'Failed'
+[2026-04-07 17:50:53Z INFO StepsRunner] Processing step: DisplayName='Run new container'
+[2026-04-07 17:50:53Z INFO StepsRunner] Evaluating: success()
+[2026-04-07 17:50:53Z INFO StepsRunner] Result: false
+[2026-04-07 17:50:53Z INFO StepsRunner] Skipping step due to condition evaluation.
+[2026-04-07 17:50:53Z INFO StepsRunner] No need for updating job result with current step result 'Skipped'.
+[2026-04-07 17:50:53Z INFO StepsRunner] Current state: job state = 'Failed'
+[2026-04-07 17:50:53Z INFO JobRunner] Finalize job.
+[2026-04-07 17:50:53Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:50:53Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:50:53Z INFO HostContext] Well known directory 'Diag': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_diag'
+[2026-04-07 17:50:53Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:50:53Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:50:53Z INFO HostContext] Well known directory 'Diag': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_diag'
+[2026-04-07 17:50:53Z INFO JobExtension] Initialize Env context
+[2026-04-07 17:50:53Z INFO JobExtension] Initialize steps context
+[2026-04-07 17:50:53Z INFO JobExtension] Total accessible running process: 330.
+[2026-04-07 17:50:53Z INFO JobExtension] Inspecting process environment variables. PID: 6752 (svchost)
+[2026-04-07 17:50:53Z WARN JobExtension] Ignore exception during read process environment variables: Access is denied.
+[2026-04-07 17:50:53Z INFO JobExtension] Inspecting process environment variables. PID: 24424 (WmiPrvSE)
+[2026-04-07 17:50:53Z WARN JobExtension] Ignore exception during read process environment variables: Access is denied.
+[2026-04-07 17:50:53Z INFO JobExtension] Inspecting process environment variables. PID: 7660 (svchost)
+[2026-04-07 17:50:53Z WARN JobExtension] Ignore exception during read process environment variables: Access is denied.
+[2026-04-07 17:50:53Z INFO JobExtension] Wait for all connectivity checks to finish.
+[2026-04-07 17:50:53Z INFO JobExtension] Connectivity check result: GitHub.Runner.Worker.JobExtension+CheckResult
+[2026-04-07 17:50:53Z INFO JobExtension] Connectivity check result: GitHub.Runner.Worker.JobExtension+CheckResult
+[2026-04-07 17:50:53Z INFO JobExtension] Connectivity check result: GitHub.Runner.Worker.JobExtension+CheckResult
+[2026-04-07 17:50:53Z INFO ExecutionContext] Publish step telemetry for current step {
+  "action": "complete_job",
+  "type": "runner",
+  "stage": "Post",
+  "stepId": "d27b38a4-1ba8-4b33-935c-0b06f415b8fd",
+  "result": "succeeded",
+  "errorMessages": [],
+  "executionTimeInSeconds": 1,
+  "startTime": "2026-04-07T17:50:53.9373256Z",
+  "finishTime": "2026-04-07T17:50:53.9845504Z"
+}.
+[2026-04-07 17:50:53Z INFO JobRunner] Job result after all job steps finish: Failed
+[2026-04-07 17:50:53Z INFO JobRunner] Completing the job execution context.
+[2026-04-07 17:50:53Z INFO JobRunner] Shutting down the job server queue.
+[2026-04-07 17:50:53Z INFO JobServerQueue] Fire signal to shutdown all queues.
+[2026-04-07 17:50:55Z INFO JobServerQueue] Tried to upload 1 file(s) to results, success rate: 1/1.
+[2026-04-07 17:50:56Z INFO JobServerQueue] All queue process task stopped.
+[2026-04-07 17:50:56Z INFO JobServerQueue] Try to append 1 batches web console lines for record '460bc7f3-f43c-4c24-8ea8-76f891d515aa', success rate: 1/1.
+[2026-04-07 17:50:56Z INFO JobServerQueue] Try to append 1 batches web console lines for record 'd27b38a4-1ba8-4b33-935c-0b06f415b8fd', success rate: 1/1.
+[2026-04-07 17:50:56Z INFO JobServerQueue] Web console line queue drained.
+[2026-04-07 17:50:56Z INFO JobServerQueue] Uploading 3 files in one shot.
+[2026-04-07 17:50:56Z INFO JobServerQueue] Try to upload 3 log files or attachments, success rate: 3/3.
+[2026-04-07 17:50:56Z INFO JobServerQueue] File upload queue drained.
+[2026-04-07 17:50:56Z INFO JobServerQueue] Starting results-based upload queue...
+[2026-04-07 17:50:56Z INFO JobServerQueue] Uploading 3 file(s) in one shot through results service.
+[2026-04-07 17:50:56Z INFO JobServerQueue] Got a step log file to send to results service.
+[2026-04-07 17:50:56Z INFO JobServerQueue] Starting upload of step log file to results service ResultsLog, C:\Users\user\Downloads\outfit-recommender\actions-runner\_diag\blocks\5561a0c9-7f44-48b2-b6b3-e3e9dca6c975_460bc7f3-f43c-4c24-8ea8-76f891d515aa.1
+[2026-04-07 17:50:57Z INFO JobServerQueue] Got a step log file to send to results service.
+[2026-04-07 17:50:57Z INFO JobServerQueue] Starting upload of step log file to results service ResultsLog, C:\Users\user\Downloads\outfit-recommender\actions-runner\_diag\blocks\5561a0c9-7f44-48b2-b6b3-e3e9dca6c975_d27b38a4-1ba8-4b33-935c-0b06f415b8fd.1
+[2026-04-07 17:50:57Z INFO JobServerQueue] Got a job log file to send to results service.
+[2026-04-07 17:50:57Z INFO JobServerQueue] Starting upload of job log file to results service ResultsLog, C:\Users\user\Downloads\outfit-recommender\actions-runner\_diag\blocks\5561a0c9-7f44-48b2-b6b3-e3e9dca6c975_c0a769e5-7843-50e6-bece-b3248feae233.1
+[2026-04-07 17:50:58Z INFO JobServerQueue] Tried to upload 3 file(s) to results, success rate: 3/3.
+[2026-04-07 17:50:58Z INFO JobServerQueue] Results upload queue drained.
+[2026-04-07 17:50:58Z INFO JobServerQueue] Timeline update queue drained.
+[2026-04-07 17:50:58Z INFO JobServerQueue] Disposing job server ...
+[2026-04-07 17:50:58Z INFO JobServerQueue] Disposing results server ...
+[2026-04-07 17:50:58Z INFO JobServerQueue] All queue process tasks have been stopped, and all queues are drained.
+[2026-04-07 17:50:58Z INFO TempDirectoryManager] Cleaning runner temp folder: C:\Users\user\Downloads\outfit-recommender\actions-runner\_work\_temp
+[2026-04-07 17:50:58Z INFO HostContext] Well known directory 'Bin': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\bin'
+[2026-04-07 17:50:58Z INFO HostContext] Well known directory 'Root': 'C:\Users\user\Downloads\outfit-recommender\actions-runner'
+[2026-04-07 17:50:58Z INFO HostContext] Well known directory 'Diag': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_diag'
+[2026-04-07 17:50:58Z INFO HostContext] Well known config file 'Telemetry': 'C:\Users\user\Downloads\outfit-recommender\actions-runner\_diag\.telemetry'
+[2026-04-07 17:50:58Z INFO JobRunner] Raising job completed against run service
+[2026-04-07 17:51:06Z WARN GitHubActionsService] Attempt 1 of POST request to https://run-actions-2-azure-eastus.actions.githubusercontent.com/8/completejob failed (HTTP Status: ServiceUnavailable). The operation will be retried in 10.923 seconds.
+[2026-04-07 17:51:17Z INFO Worker] Job completed.
