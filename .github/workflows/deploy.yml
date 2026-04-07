@@ -15,10 +15,12 @@ jobs:
         run: docker pull nabilapisol/outfit-recommender:latest
 
       - name: Stop old container
-        run: docker stop outfit-container || true
+        run: docker stop outfit-container
+        continue-on-error: true
 
       - name: Remove old container
-        run: docker rm outfit-container || true
+        run: docker rm outfit-container
+        continue-on-error: true
 
       - name: Run new container
         run: docker run -d -p 8000:8000 --name outfit-container nabilapisol/outfit-recommender:latest
