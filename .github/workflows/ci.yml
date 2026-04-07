@@ -1,0 +1,38 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Get your code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2. Setup Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      # 3. Install dependencies
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install pytest
+
+      # 4. Run tests
+      - name: Run tests
+        run: |
+          pytest
+
+      # 5. Run app (check it works)
+      - name: Run FastAPI app
+        run: |
+          python -m uvicorn main:app --host 127.0.0.1 --port 8000 &
+          sleep 5

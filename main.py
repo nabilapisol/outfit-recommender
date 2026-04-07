@@ -1,0 +1,89 @@
+from fastapi import FastAPI, Form
+from fastapi.responses import HTMLResponse
+import requests
+
+app = FastAPI()
+
+# 🔑 Put your OpenWeather API key here
+API_KEY = "4fbc1b732bd0fdfc65baa0275f0e9ceb"
+
+
+# 🌦️ Get weather data
+def get_weather(city):
+    url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}&units=metric"
+    response = requests.get(url)
+
+    if response.status_code != 200:
+        return None
+
+    return response.json()
+
+
+# 👕 Outfit recommendation logic
+def recommend_outfit(temp, weather):
+    weather = weather.lower()
+
+    if "rain" in weather:
+        return "🌧️ Bring an umbrella, wear waterproof jacket"
+
+    if temp < 5:
+        return "🧥 Heavy coat, gloves, scarf"
+    elif temp < 15:
+        return "🧥 Jacket or hoodie"
+    elif temp < 25:
+        return "👕 T-shirt and jeans"
+    else:
+        return "🩳 Shorts, light clothes, stay cool"
+
+
+# 🏠 Home page UI
+@app.get("/", response_class=HTMLResponse)
+def home():
+    return """
+    <html>
+        <head>
+            <title>Outfit Recommender</title>
+        </head>
+        <body style="font-family: Arial; text-align:center; margin-top:50px;">
+            <h1>👕 Outfit Recommender</h1>
+            <form action="/recommend" method="post">
+                <input type="text" name="city" placeholder="Enter city" required style="padding:10px;"/>
+                <br><br>
+                <button type="submit" style="padding:10px 20px;">Get Outfit</button>
+            </form>
+        </body>
+    </html>
+    """
+
+
+# 📊 Result page
+@app.post("/recommend", response_class=HTMLResponse)
+def get_recommendation(city: str = Form(...)):
+    data = get_weather(city)
+
+    if not data:
+        return f"""
+        <h2>❌ City not found</h2>
+        <a href="/">Go back</a>
+        """
+
+    temp = data["main"]["temp"]
+    weather = data["weather"][0]["description"]
+
+    outfit = recommend_outfit(temp, weather)
+
+    return f"""
+    <html>
+        <body style="font-family: Arial; text-align:center; margin-top:50px;">
+            <h1>📍 {city.title()}</h1>
+            <h2>🌡️ Temperature: {temp}°C</h2>
+            <h3>🌤️ Weather: {weather}</h3>
+
+            <h2>👗 Recommended Outfit:</h2>
+            <p style="font-size:20px;">{outfit}</p>
+
+            <br><br>
+            <a href="/">🔙 Try another city</a>
+        </body>
+    </html>
+    """
