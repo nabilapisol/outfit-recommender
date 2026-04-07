@@ -1,0 +1,11 @@
+﻿{
+  "agentId": 2,
+  "agentName": "LAPTOP-30OEQU58",
+  "poolId": 1,
+  "poolName": "Default",
+  "serverUrl": "https://pipelinesghubeus5.actions.githubusercontent.com/enMLoEwisWm0p8KyKw1P9sjgwmVmNfb4dZtfoseGgl6ZPRRhJL/",
+  "gitHubUrl": "https://github.com/nabilapisol/outfit-recommender",
+  "workFolder": "_work",
+  "useV2Flow": true,
+  "serverUrlV2": "https://broker.actions.githubusercontent.com/"
+}

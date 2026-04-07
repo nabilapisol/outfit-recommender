@@ -1,0 +1,24 @@
+name: Deploy
+
+on:
+  workflow_run:
+    workflows: ["CI/CD Pipeline"]
+    types:
+      - completed
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Pull latest Docker image
+        run: docker pull nabilapisol/outfit-recommender:latest
+
+      - name: Stop old container
+        run: docker stop outfit-container || true
+
+      - name: Remove old container
+        run: docker rm outfit-container || true
+
+      - name: Run new container
+        run: docker run -d -p 8000:8080 --name outfit-container nabilapisol/outfit-recommender:latest
