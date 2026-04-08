@@ -23,4 +23,4 @@ jobs:
         continue-on-error: true
 
       - name: Run new container
-        run: docker run -d -p 8000:8000 --name outfit-container nabilapisol/outfit-recommender:latest
+        run: docker run -d -p 8000:8080 --name outfit-container nabilapisol/outfit-recommender:latest
