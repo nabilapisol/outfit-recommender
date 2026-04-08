@@ -19,21 +19,43 @@ def get_weather(city):
     return response.json()
 
 
-# 👕 Outfit recommendation logic
-def recommend_outfit(temp, weather):
+# 👕 Outfit recommendation logic (UPDATED with mood)
+def recommend_outfit(temp, weather, mood):
     weather = weather.lower()
+    mood = mood.lower()
 
+    # 🌧️ Rain priority
     if "rain" in weather:
         return "🌧️ Bring an umbrella, wear waterproof jacket"
 
+    # 🧠 Combine weather + mood
     if temp < 5:
-        return "🧥 Heavy coat, gloves, scarf"
+        if mood == "cozy":
+            return "🧥 Warm coat + scarf + cozy sweater"
+        elif mood == "chic":
+            return "🧥 Stylish coat + boots"
+        else:
+            return "🧥 Heavy coat, gloves, scarf"
+
     elif temp < 15:
-        return "🧥 Jacket or hoodie"
+        if mood == "sporty":
+            return "🏃 Hoodie + joggers + sneakers"
+        elif mood == "cozy":
+            return "🧥 Hoodie + comfy pants"
+        else:
+            return "🧥 Jacket or hoodie"
+
     elif temp < 25:
-        return "👕 T-shirt and jeans"
+        if mood == "chic":
+            return "👗 Light dress or stylish outfit"
+        else:
+            return "👕 T-shirt and jeans"
+
     else:
-        return "🩳 Shorts, light clothes, stay cool"
+        if mood == "sporty":
+            return "🏃 Tank top + shorts"
+        else:
+            return "🩳 Shorts, light clothes, stay cool"
 
 
 # 🏠 Home page UI
@@ -47,7 +69,17 @@ def home():
         <body style="font-family: Arial; text-align:center; margin-top:50px;">
             <h1>👕 Outfit Recommender</h1>
             <form action="/recommend" method="post">
+                
                 <input type="text" name="city" placeholder="Enter city" required style="padding:10px;"/>
+                <br><br>
+
+                <select name="mood" style="padding:10px;">
+                    <option value="cozy">Cozy / Lazy</option>
+                    <option value="productive">Productive / Working</option>
+                    <option value="sporty">Active / Sporty</option>
+                    <option value="chic">Going Out / Chic</option>
+                </select>
+
                 <br><br>
                 <button type="submit" style="padding:10px 20px;">Get Outfit</button>
             </form>
@@ -58,7 +90,7 @@ def home():
 
 # 📊 Result page
 @app.post("/recommend", response_class=HTMLResponse)
-def get_recommendation(city: str = Form(...)):
+def get_recommendation(city: str = Form(...), mood: str = Form(...)):
     data = get_weather(city)
 
     if not data:
@@ -70,7 +102,7 @@ def get_recommendation(city: str = Form(...)):
     temp = data["main"]["temp"]
     weather = data["weather"][0]["description"]
 
-    outfit = recommend_outfit(temp, weather)
+    outfit = recommend_outfit(temp, weather, mood)
 
     return f"""
     <html>
@@ -78,6 +110,7 @@ def get_recommendation(city: str = Form(...)):
             <h1>📍 {city.title()}</h1>
             <h2>🌡️ Temperature: {temp}°C</h2>
             <h3>🌤️ Weather: {weather}</h3>
+            <h3>😊 Mood: {mood}</h3>
 
             <h2>👗 Recommended Outfit:</h2>
             <p style="font-size:20px;">{outfit}</p>
